@@ -1,63 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senior DBA & Financial Engineer Portfolio</title>
+    <title>DBA Portfolio | Expert Insights</title>
     <style>
-        :root { --primary: #1a2a6c; --secondary: #b21f1f; --text: #333; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; color: var(--text); background: #f4f7f6; }
-        header { background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d); color: white; padding: 4rem 2rem; text-align: center; }
-        .container { max-width: 900px; margin: -50px auto 50px; background: white; padding: 3rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        h2 { color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-top: 2rem; }
-        .project { background: #fff; border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; transition: 0.3s; }
-        .project:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .tag { display: inline-block; background: #e8f0fe; color: #1a73e8; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: bold; margin-right: 5px; }
-        .contact-link { display: inline-block; margin-top: 20px; padding: 12px 25px; background: var(--primary); color: white; text-decoration: none; border-radius: 5px; }
+        /* 미니멀리즘 스타일링 */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #1a1a1a; max-width: 700px; margin: 40px auto; padding: 0 20px; background: #fff; }
+        h1 { font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.3rem; margin-top: 2.5rem; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .subtitle { color: #666; font-size: 1.1rem; margin-bottom: 2rem; }
+        .project-item { margin-bottom: 1.5rem; }
+        .project-title { font-weight: 600; color: #000; display: block; }
+        .project-desc { font-size: 0.95rem; color: #444; }
+        .skill-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-list li { background: #f4f4f4; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        footer { margin-top: 4rem; font-size: 0.8rem; color: #999; border-top: 1px solid #eee; padding-top: 20px; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Strategic Database Administrator</h1>
-    <p>Infrastructure Optimization | Algorithmic Trading Systems | Data Architecture</p>
-</header>
+    <header>
+        <h1>Database Administrator</h1>
+        <div class="subtitle">Infra Optimization & Algorithmic Engineering</div>
+        <p>500대 이상의 엔터프라이즈급 인스턴스를 운영하며 대규모 인프라의 안정성을 책임집니다. 데이터의 가치를 기술로 증명하는 엔지니어입니다.</p>
+    </header>
 
-<div class="container">
     <section>
-        <h2>Professional Summary</h2>
-        <p>미국 캘리포니아 기반의 숙련된 DBA로서, 500대 이상의 엔터프라이즈급 인스턴스를 안정적으로 운영하고 있습니다. 클라우드 기반 인프라 최적화와 더불어, Python 기반의 정교한 금융 자동 매매 시스템을 설계하는 엔지니어링 역량을 보유하고 있습니다.</p>
+        <h2>Technical Core</h2>
+        <ul class="skill-list">
+            <li>PostgreSQL & Aurora</li>
+            <li>MongoDB Atlas / Redis</li>
+            <li>AWS Cloud Architecture</li>
+            <li>Python Automation</li>
+            <li>Open Telemetry Monitoring</li>
+        </ul>
     </section>
 
     <section>
-        <h2>Technical Expertise</h2>
-        <div>
-            <span class="tag">PostgreSQL / Aurora</span>
-            <span class="tag">MongoDB Atlas</span>
-            <span class="tag">AWS Infrastructure</span>
-            <span class="tag">Python & Backtesting</span>
-            <span class="tag">Open Telemetry</span>
+        <h2>Projects</h2>
+        <div class="project-item">
+            <span class="project-title">Algorithmic Trading Engine (Engine 4/5)</span>
+            <span class="project-desc">1분봉 데이터를 활용한 고성능 트레이딩 시스템 구축 및 승률 최적화 백테스팅 엔진 개발.</span>
+        </div>
+        <div class="project-item">
+            <span class="project-title">Enterprise Database Consulting</span>
+            <span class="project-desc">Autoever CMC Center 외부 컨설턴트로서 대규모 분산 데이터베이스 운영 및 아카이빙 프로세스 자동화.</span>
         </div>
     </section>
 
     <section>
-        <h2>Key Projects</h2>
-        <div class="project">
-            <h3>Automated Trading System (Engine 4 & 5)</h3>
-            <p>1분 단위의 실시간 데이터를 활용한 알고리즘 트레이딩 시스템을 개발 중입니다. 승률(Win-rate) 극대화를 위한 전략 최적화와 대규모 백테스팅 시스템을 직접 구축하여 운영하고 있습니다.</p>
-        </div>
-        <div class="project">
-            <h3>Enterprise DB Management & Automation</h3>
-            <p>Autoever CMC Center의 전문 컨설턴트로서 분산 데이터베이스 환경의 가용성을 책임지며, 관리 효율성을 극대화하기 위한 아카이빙 및 모니터링 자동화 프로젝트를 수행했습니다.</p>
-        </div>
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/your-profile" target="_blank">View Profile</a></p>
     </section>
 
-    <section style="text-align: center;">
-        <h2>Let's Connect</h2>
-        <p>미국 내 테크 프로젝트 협업 및 인프라 컨설팅 문의 환영합니다.</p>
-        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-ID" class="contact-link">LinkedIn 프로필 방문하기</a>
-    </section>
-</div>
+    <footer>
+        <p>&copy; 2026 DBA Portfolio. Built with simplicity.</p>
+    </footer>
 
 </body>
 </html>
