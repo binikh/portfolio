@@ -1,449 +1,234 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of a Senior Database Administrator specializing in High Availability, Performance Tuning, and Cloud Data Architecture.">
-    <title>Senior DBA Portfolio | Data Architect</title>
-    
+    <title>김광호 | Senior DBA Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        dark: '#0f172a', /* Slate 900 */
-                        darker: '#020617', /* Slate 950 */
-                        surface: '#1e293b', /* Slate 800 */
-                        primary: '#3b82f6', /* Blue 500 */
-                        secondary: '#64748b', /* Slate 500 */
-                        accent: '#0ea5e9', /* Sky 500 */
-                        success: '#10b981', /* Emerald 500 */
-                        warning: '#f59e0b', /* Amber 500 */
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'flow': 'flow 20s linear infinite',
-                    },
-                    keyframes: {
-                        flow: {
-                            '0%': { backgroundPosition: '0 0' },
-                            '100%': { backgroundPosition: '100% 100%' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        body {
-            background-color: #020617;
-            color: #e2e8f0;
-            overflow-x: hidden;
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #111; color: #fff; }
+        .timeline-line {
+            position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #333; transform: translateX(-50%);
         }
+        .card-hover:hover { transform: translateY(-5px); border-color: #3b82f6; transition: all 0.3s ease; }
         
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-
-        /* Grid Background Pattern */
-        .bg-grid {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        /* Server Rack Lights Animation */
-        .blink { animation: blink-anim 1s infinite alternate; }
-        .blink-fast { animation: blink-anim 0.2s infinite alternate; }
-        @keyframes blink-anim { from { opacity: 0.4; } to { opacity: 1; } }
-
-        /* Tech Stack Icons */
-        .tech-icon {
-            transition: all 0.3s ease;
-            filter: grayscale(100%);
-            opacity: 0.5;
-        }
-        .tech-icon:hover {
-            filter: grayscale(0%);
-            opacity: 1;
-            transform: translateY(-5px);
-        }
-
-        /* Complex Diagram Connectors */
-        .connector {
-            position: absolute;
-            background: #334155;
-            z-index: 0;
-        }
-        .data-packet {
-            position: absolute;
-            width: 6px; height: 6px;
-            background: #3b82f6;
-            border-radius: 50%;
-            z-index: 10;
-            box-shadow: 0 0 10px #3b82f6;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: #444; border-radius: 4px; }
     </style>
 </head>
-<body class="antialiased bg-grid font-sans">
+<body class="antialiased overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 bg-darker/80 backdrop-blur-lg border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-server text-primary text-xl"></i>
-                <span class="text-xl font-bold tracking-tight text-white">DBA<span class="text-primary">.ARCHITECT</span></span>
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <span class="text-xl font-bold">KIM KWANG-HO</span>
+            <div class="hidden md:flex space-x-8 text-sm text-gray-400">
+                <a href="#about" class="hover:text-white">About</a>
+                <a href="#journey" class="hover:text-white">Career Journey</a>
+                <a href="#contributions" class="hover:text-white text-blue-400">Publications & Talks</a>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-                <a href="#overview" class="hover:text-white transition-colors">Overview</a>
-                <a href="#case-studies" class="hover:text-white transition-colors">Architecture Case Studies</a>
-                <a href="#optimization" class="hover:text-white transition-colors">Query Tuning</a>
-                <a href="#stack" class="hover:text-white transition-colors">Tech Stack</a>
-            </div>
-            <a href="#" class="px-4 py-2 text-xs font-bold bg-primary hover:bg-blue-600 text-white rounded transition-all shadow-lg shadow-blue-500/20">
-                <i class="fa-solid fa-download mr-2"></i> RESUME (PDF)
-            </a>
         </div>
     </nav>
 
-    <header id="overview" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center z-10">
-            
-            <div data-aos="fade-right" data-aos-duration="1000">
-                <div class="inline-flex items-center px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono mb-6">
-                    <span class="w-2 h-2 rounded-full bg-success mr-2 animate-pulse"></span>
-                    System Operational: 99.999% Uptime
-                </div>
-                <h1 class="text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-                    Managing Data at <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Enterprise Scale</span>
-                </h1>
-                <p class="text-lg text-secondary mb-8 leading-relaxed max-w-lg">
-                    Senior Database Administrator specializing in Mission-Critical Systems, High Availability (HA) Architecture, and Cloud Migration. 
-                    Ensuring integrity, security, and sub-millisecond latency for large-scale data ecosystems.
-                </p>
-                
-                <div class="flex flex-wrap gap-4">
-                    <div class="flex items-center gap-3 px-4 py-2 bg-surface rounded border border-white/5">
-                        <i class="fa-brands fa-aws text-2xl text-white"></i>
-                        <div class="flex flex-col">
-                            <span class="text-xs text-secondary">Cloud Certified</span>
-                            <span class="text-sm font-bold">AWS Solution Architect</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 px-4 py-2 bg-surface rounded border border-white/5">
-                        <i class="fa-solid fa-database text-2xl text-white"></i>
-                        <div class="flex flex-col">
-                            <span class="text-xs text-secondary">Expertise</span>
-                            <span class="text-sm font-bold">PostgreSQL / Oracle</span>
-                        </div>
-                    </div>
-                </div>
+    <header id="about" class="min-h-screen flex items-center justify-center pt-20 px-6 relative">
+        <div class="text-center max-w-4xl" data-aos="fade-up">
+            <div class="inline-block px-4 py-1 mb-6 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-400 text-sm font-bold">
+                Senior Database Administrator
             </div>
-
-            <div class="relative" data-aos="fade-left" data-aos-duration="1200">
-                <div class="bg-surface rounded-xl border border-white/10 shadow-2xl overflow-hidden backdrop-blur-sm">
-                    <div class="bg-darker px-4 py-3 border-b border-white/5 flex justify-between items-center">
-                        <div class="flex gap-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <span class="text-xs font-mono text-gray-500">master_node_monitoring.sh</span>
-                    </div>
-                    
-                    <div class="p-6 font-mono text-xs space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-400">Cluster Load (Primary)</span>
-                                <span class="text-success">OK</span>
-                            </div>
-                            <div class="w-full bg-darker rounded-full h-2">
-                                <div class="bg-primary h-2 rounded-full" style="width: 34%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-400">Replica Lag (us-west-1)</span>
-                                <span class="text-success">0.02ms</span>
-                            </div>
-                            <div class="w-full bg-darker rounded-full h-2">
-                                <div class="bg-success h-2 rounded-full" style="width: 2%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-400">Transaction/sec (TPS)</span>
-                                <span class="text-white">4,280</span>
-                            </div>
-                            <div class="flex items-end gap-1 h-10 mt-2">
-                                <div class="w-1 bg-primary/30 h-4"></div>
-                                <div class="w-1 bg-primary/40 h-6"></div>
-                                <div class="w-1 bg-primary/50 h-5"></div>
-                                <div class="w-1 bg-primary/60 h-8"></div>
-                                <div class="w-1 bg-primary h-10"></div> <div class="w-1 bg-primary/70 h-7"></div>
-                                <div class="w-1 bg-primary/50 h-5"></div>
-                                <div class="w-1 bg-primary/30 h-4"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6 pt-4 border-t border-white/5">
-                            <p class="text-gray-500 mb-1">$ tail -f /var/log/postgresql/main.log</p>
-                            <p class="text-blue-400">[INFO] Automatic vacuuming of "public.transactions" completed.</p>
-                            <p class="text-blue-400">[INFO] Checkpoint complete: wrote 1024 buffers (0.4%).</p>
-                            <p class="text-green-400">[SUCCESS] Replication slot "slave_01" active.</p>
-                            <span class="inline-block w-2 h-4 bg-gray-400 animate-pulse align-middle"></span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="absolute -right-4 top-10 bg-surface/90 backdrop-blur p-4 rounded border border-white/10 shadow-lg" data-aos="fade-up" data-aos-delay="400">
-                    <div class="text-xs text-secondary uppercase tracking-widest mb-1">Experience</div>
-                    <div class="text-2xl font-bold text-white">10+ Years</div>
-                    <div class="text-xs text-gray-400">Managing High-Load DBs</div>
-                </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                DATA ARCHITECT<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">BUILDING STABILITY</span>
+            </h1>
+            <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                MSSQL부터 시작해 대용량 트래픽의 코인원, 글로벌 스푼라디오를 거쳐<br>
+                현재 <span class="text-white font-bold">Solomon America</span>에서 엔터프라이즈 데이터 인프라를 책임지고 있습니다.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#journey" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-bold transition">Career Path 확인하기</a>
+                <a href="mailto:binipig@gmail.com" class="px-8 py-3 border border-gray-700 hover:bg-gray-800 rounded-lg font-bold transition">Contact Me</a>
             </div>
         </div>
     </header>
 
-    <div class="border-y border-white/5 bg-surface/30 backdrop-blur-sm">
-        <div class="max-w-7xl mx-auto px-6 py-10">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div data-aos="fade-up" data-aos-delay="0">
-                    <div class="text-3xl font-bold text-white mb-2 counter" data-target="99.99">99.99%</div>
-                    <div class="text-xs text-secondary uppercase tracking-widest">Service Uptime</div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-3xl font-bold text-white mb-2">240 TB+</div>
-                    <div class="text-xs text-secondary uppercase tracking-widest">Data Managed</div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-3xl font-bold text-white mb-2">5,000+</div>
-                    <div class="text-xs text-secondary uppercase tracking-widest">Max TPS Handled</div>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-3xl font-bold text-white mb-2">Zero</div>
-                    <div class="text-xs text-secondary uppercase tracking-widest">Critical Data Loss</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <section id="journey" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-20 text-center">Professional Journey</h2>
+            
+            <div class="relative">
+                <div class="hidden md:block timeline-line"></div>
 
-    <section id="case-studies" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Architecture & <span class="text-primary">Reliability Engineering</span></h2>
-                <p class="text-secondary max-w-2xl">
-                    My core competency lies in designing fault-tolerant database systems that can withstand regional outages and massive traffic spikes.
-                </p>
-            </div>
-
-            <div class="bg-surface border border-white/5 rounded-2xl p-8 lg:p-12 mb-16 overflow-hidden relative group">
-                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <i class="fa-solid fa-network-wired text-9xl text-white"></i>
-                </div>
-                
-                <div class="grid lg:grid-cols-2 gap-12">
-                    <div class="space-y-6">
-                        <div class="inline-block px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold rounded uppercase">Project Case Study</div>
-                        <h3 class="text-2xl font-bold text-white">Multi-Region Disaster Recovery Implementation</h3>
-                        
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Designed and implemented a <span class="text-white">Active-Passive Failover strategy</span> for a client's critical financial ledger using AWS RDS (PostgreSQL).
-                            This architecture ensures Business Continuity Plan (BCP) compliance with an RTO (Recovery Time Objective) of under 2 minutes.
+                <div class="grid md:grid-cols-2 gap-8 mb-20 items-center">
+                    <div class="md:text-right" data-aos="fade-right">
+                        <div class="text-blue-500 font-bold text-lg">Current</div>
+                        <h3 class="text-2xl font-bold text-white">Solomon America</h3>
+                        <p class="text-gray-500 text-sm mb-4">Irvine, CA (Autoever CMC Contract)</p>
+                        <p class="text-gray-400 leading-relaxed">
+                            현대/기아 자동차(US/Canada)의 대규모 데이터베이스 인프라를 전담 관리합니다.<br>
+                            570개 이상의 인스턴스(Aurora PG, Redis, Mongo)를 1인 체제로 운영하며,
+                            OpenTelemetry 기반의 모니터링 자동화를 구축했습니다.
                         </p>
-
-                        <ul class="space-y-3 mt-4">
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                <span class="text-sm text-gray-300">Configured Cross-Region Read Replicas (US-West to US-East) for geographical redundancy.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                <span class="text-sm text-gray-300">Implemented PgBouncer for connection pooling to handle 10k+ concurrent connections seamlessly.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                <span class="text-sm text-gray-300">Automated failover scripts using AWS Lambda & CloudWatch alarms.</span>
-                            </li>
-                        </ul>
                     </div>
+                    <div class="relative flex justify-center md:justify-start" data-aos="fade-left">
+                        <div class="w-4 h-4 bg-blue-500 rounded-full absolute top-1/2 -translate-y-1/2 md:-left-[25px] ring-4 ring-black z-10 hidden md:block"></div>
+                        <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl w-full max-w-md card-hover">
+                            <ul class="text-sm text-gray-300 space-y-2">
+                                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i>Managing 570+ DB Instances</li>
+                                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i>Infrastructure for KIA/Hyundai US & CAN</li>
+                                <li><i class="fa-solid fa-check text-blue-500 mr-2"></i>End-to-End Automation & Monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="relative bg-darker rounded-xl border border-white/10 p-6 flex items-center justify-center min-h-[300px]">
-                        <div class="absolute left-10 top-1/2 -translate-y-1/2 flex flex-col items-center z-10">
-                            <div class="w-16 h-16 bg-surface border-2 border-primary rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-                                <i class="fa-solid fa-database text-2xl text-white"></i>
+                <div class="grid md:grid-cols-2 gap-8 mb-20 items-center">
+                    <div class="order-2 md:order-1 relative flex justify-center md:justify-end" data-aos="fade-right">
+                        <div class="w-4 h-4 bg-gray-600 rounded-full absolute top-1/2 -translate-y-1/2 md:-right-[25px] ring-4 ring-black z-10 hidden md:block"></div>
+                        <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl w-full max-w-md card-hover text-right">
+                            <ul class="text-sm text-gray-300 space-y-2">
+                                <li>Global AWS Multi-Region Architecture <i class="fa-solid fa-check text-gray-500 ml-2"></i></li>
+                                <li>Aurora Postgres/MySQL Migration <i class="fa-solid fa-check text-gray-500 ml-2"></i></li>
+                                <li>SRE & DevOps Culture Adoption <i class="fa-solid fa-check text-gray-500 ml-2"></i></li>
+                            </ul>
+                            <div class="mt-4 pt-4 border-t border-gray-800">
+                                <a href="#contributions" class="text-xs text-blue-400 hover:underline">
+                                    <i class="fa-solid fa-microphone mr-1"></i> 발표 및 기고 활동 보기
+                                </a>
                             </div>
-                            <span class="mt-2 text-xs font-mono text-primary font-bold">Primary (RW)</span>
-                            <span class="text-[10px] text-gray-500">US-West-1</span>
                         </div>
+                    </div>
+                    <div class="order-1 md:order-2" data-aos="fade-left">
+                        <div class="text-gray-500 font-bold text-lg">2020.06 - 2023</div>
+                        <h3 class="text-2xl font-bold text-white">Spoon Radio</h3>
+                        <p class="text-gray-500 text-sm mb-4">SRE DBA (DevOps)</p>
+                        <p class="text-gray-400 leading-relaxed">
+                            글로벌 오디오 플랫폼의 데이터 신뢰성을 담당했습니다.<br>
+                            AWS Aurora 기반의 무중단 업그레이드 아키텍처를 설계하고,<br>
+                            MSA 전환 및 비용 최적화(Cost Optimization) 프로젝트를 주도했습니다.
+                        </p>
+                    </div>
+                </div>
 
-                        <div class="absolute left-28 right-28 top-1/2 h-1 bg-gray-700 -translate-y-1/2 overflow-hidden">
-                            <div class="absolute top-0 left-0 w-4 h-full bg-primary blur-sm animate-[flow_2s_linear_infinite]" style="animation-name: slideRight; animation-duration: 1.5s;"></div>
+                <div class="grid md:grid-cols-2 gap-8 mb-20 items-center">
+                    <div class="md:text-right" data-aos="fade-right">
+                        <div class="text-gray-500 font-bold text-lg">2019.07 - 2020.06</div>
+                        <h3 class="text-2xl font-bold text-white">Coinone (코인원)</h3>
+                        <p class="text-gray-500 text-sm mb-4">DBA Cell</p>
+                        <p class="text-gray-400 leading-relaxed">
+                            가상화폐 거래소의 특성상 24/7 무중단 운영과 보안이 최우선이었습니다.<br>
+                            금융권 수준의 데이터 정합성을 유지하며 MSSQL 및 MySQL 기반의<br>
+                            트레이딩 엔진 DB를 운영했습니다.
+                        </p>
+                    </div>
+                    <div class="relative flex justify-center md:justify-start" data-aos="fade-left">
+                        <div class="w-4 h-4 bg-gray-600 rounded-full absolute top-1/2 -translate-y-1/2 md:-left-[25px] ring-4 ring-black z-10 hidden md:block"></div>
+                        <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl w-full max-w-md card-hover">
+                            <ul class="text-sm text-gray-300 space-y-2">
+                                <li><i class="fa-solid fa-check text-gray-500 mr-2"></i>High-Frequency Trading DB Tuning</li>
+                                <li><i class="fa-solid fa-check text-gray-500 mr-2"></i>AWS KMS & Security Compliance</li>
+                                <li><i class="fa-solid fa-check text-gray-500 mr-2"></i>Python Automation for Operations</li>
+                            </ul>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="absolute right-10 top-1/2 -translate-y-1/2 flex flex-col items-center z-10">
-                            <div class="w-16 h-16 bg-surface border-2 border-green-500 rounded-lg flex items-center justify-center">
-                                <i class="fa-solid fa-database text-2xl text-gray-300"></i>
-                            </div>
-                            <span class="mt-2 text-xs font-mono text-green-500 font-bold">Replica (RO)</span>
-                            <span class="text-[10px] text-gray-500">US-East-1</span>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1 relative flex justify-center md:justify-end" data-aos="fade-right">
+                        <div class="w-4 h-4 bg-gray-600 rounded-full absolute top-1/2 -translate-y-1/2 md:-right-[25px] ring-4 ring-black z-10 hidden md:block"></div>
+                        <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl w-full max-w-md card-hover text-right">
+                            <ul class="text-sm text-gray-300 space-y-2">
+                                <li>Large-scale MSSQL Clusters <i class="fa-solid fa-check text-gray-500 ml-2"></i></li>
+                                <li>Oracle DB Administration <i class="fa-solid fa-check text-gray-500 ml-2"></i></li>
+                                <li>On-premise HA (Always On) <i class="fa-solid fa-check text-gray-500 ml-2"></i></li>
+                            </ul>
                         </div>
-
-                        <div class="absolute top-4 right-4 px-2 py-1 bg-green-900/30 border border-green-500/30 text-green-500 text-[10px] rounded">
-                            REPLICATION: ACTIVE
-                        </div>
+                    </div>
+                    <div class="order-1 md:order-2" data-aos="fade-left">
+                        <div class="text-gray-500 font-bold text-lg">2016.03 - 2019.07</div>
+                        <h3 class="text-2xl font-bold text-white">Modetour (모두투어)</h3>
+                        <p class="text-gray-500 text-sm mb-4">System Operations Manager</p>
+                        <p class="text-gray-400 leading-relaxed">
+                            대규모 여행사 시스템의 메인 DBA로서 MSSQL 대용량 트랜잭션을 처리했습니다.<br>
+                            Legacy 시스템을 안정적으로 운영하며, On-premise 환경에서의<br>
+                            성능 튜닝과 장애 대응 경험을 쌓았습니다.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="optimization" class="py-24 bg-surface/20 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id="contributions" class="py-24 bg-gradient-to-b from-[#111] to-[#0a0a0a] border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="mb-16 text-center">
-                <span class="text-accent font-mono text-sm tracking-widest uppercase">Performance Tuning</span>
-                <h2 class="text-3xl font-bold mt-2">Query Optimization & <span class="text-white">Cost Reduction</span></h2>
+                <span class="text-blue-500 font-mono text-sm tracking-widest uppercase">Thought Leadership</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4">Public Speaking & Writing</h2>
+                <p class="text-gray-400">스푼라디오 재직 당시 공유했던 기술적인 도전과 노하우들입니다.</p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="order-2 lg:order-1" data-aos="fade-right">
-                    <div class="bg-[#1e1e1e] rounded-lg shadow-2xl overflow-hidden border border-gray-700">
-                        <div class="flex items-center px-4 py-2 bg-[#252526] border-b border-black">
-                            <div class="flex space-x-2 mr-4">
-                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                            </div>
-                            <span class="text-xs text-gray-400 font-mono">postgres_tuning.sql</span>
-                        </div>
-                        <div class="p-4 overflow-x-auto">
-                            <pre class="text-xs md:text-sm font-mono leading-relaxed">
-<span class="text-gray-500">-- BEFORE: Full Table Scan (Cost: 25000.00, Time: 4.2s)</span>
-<span class="text-purple-400">SELECT</span> * <span class="text-purple-400">FROM</span> large_logs <span class="text-purple-400">WHERE</span> log_time > <span class="text-green-300">NOW()</span> - INTERVAL <span class="text-green-300">'1 day'</span>;
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <a href="https://aws.amazon.com/ko/blogs/tech/non-disruptive-change-of-spoonradio-service-using-amazonrdsproxy/" target="_blank" class="group bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-blue-500 transition-all">
+                    <div class="h-40 bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition">
+                        <i class="fa-brands fa-aws text-5xl text-yellow-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-blue-400 font-bold mb-2">AWS TECH BLOG</div>
+                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">Non-disruptive change using Amazon RDS Proxy</h3>
+                        <p class="text-sm text-gray-400 line-clamp-3">
+                            RDS Proxy를 도입하여 서비스 중단 없이 데이터베이스 스펙을 변경하고 연결 효율성을 개선한 사례를 AWS 공식 블로그에 기고했습니다.
+                        </p>
+                    </div>
+                </a>
 
-<span class="text-gray-500">-- OPTIMIZATION STRATEGY:</span>
-<span class="text-gray-500">-- 1. Partitioning by range (log_time)</span>
-<span class="text-gray-500">-- 2. BRIN Index for sequential timestamp data</span>
+                <a href="https://www.youtube.com/watch?v=ifw0nUXJf2Y" target="_blank" class="group bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-purple-500 transition-all">
+                    <div class="h-40 bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition">
+                        <span class="text-2xl font-black text-purple-400 tracking-tighter">DASH <span class="text-white">2023</span></span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-purple-400 font-bold mb-2">SPEAKER SESSION</div>
+                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">Global Streaming Service Monitoring Know-how</h3>
+                        <p class="text-sm text-gray-400 line-clamp-3">
+                            Datadog 컨퍼런스(DASH)에서 스푼라디오의 글로벌 인프라 모니터링 전략과 Datadog 활용 사례를 발표했습니다.
+                        </p>
+                    </div>
+                </a>
 
-<span class="text-purple-400">CREATE INDEX</span> idx_logs_time_brin <span class="text-purple-400">ON</span> large_logs <span class="text-purple-400">USING BRIN</span> (log_time);
-
-<span class="text-gray-500">-- AFTER: Bitmap Heap Scan (Cost: 12.50, Time: 0.05s)</span>
-<span class="text-yellow-300">EXPLAIN ANALYZE</span> <span class="text-purple-400">SELECT</span> ... ;
-<span class="text-blue-400">-> Bitmap Heap Scan on large_logs_p2024_02</span>
-<span class="text-blue-400">   -> Bitmap Index Scan on idx_logs_time_brin</span>
-<span class="text-green-400">Execution Time: 0.042 ms</span>
-</pre>
-                        </div>
+                <div class="group bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-green-500 transition-all">
+                    <div class="h-40 bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition">
+                        <i class="fa-solid fa-database text-5xl text-green-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-green-400 font-bold mb-2">SQLPASS KOREA</div>
+                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">AWS Aurora PostgreSQL Zero-downtime Upgrade</h3>
+                        <p class="text-sm text-gray-400 line-clamp-3">
+                            Logical Replication과 Blue/Green 배포 전략을 활용하여 대용량 DB를 무중단으로 메이저 업그레이드한 아키텍처를 공유했습니다.
+                        </p>
                     </div>
                 </div>
 
-                <div class="order-1 lg:order-2 space-y-6" data-aos="fade-left">
-                    <h3 class="text-2xl font-bold text-white">Reducing Query Latency by 98%</h3>
-                    <p class="text-secondary leading-relaxed">
-                        In a recent project for an automotive client, I identified bottleneck queries causing high CPU usage on the production DB.
-                        By analyzing the `EXPLAIN` plans and restructuring the table using <strong>Table Partitioning</strong> and <strong>BRIN Indexes</strong>, 
-                        I reduced the query execution time from 4 seconds to under 50 milliseconds.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 mt-6">
-                        <div class="p-4 bg-darker border border-white/5 rounded-lg">
-                            <div class="text-2xl font-bold text-success">-85%</div>
-                            <div class="text-xs text-secondary">Cloud Infrastructure Cost</div>
-                        </div>
-                        <div class="p-4 bg-darker border border-white/5 rounded-lg">
-                            <div class="text-2xl font-bold text-primary">10x</div>
-                            <div class="text-xs text-secondary">Throughput Increase</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <section id="stack" class="py-24 max-w-7xl mx-auto px-6">
-        <h2 class="text-2xl font-bold mb-12 text-center">Technical Competencies</h2>
-        
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-surface p-6 rounded-xl border border-white/5 hover:border-primary/50 transition-colors">
-                <div class="w-10 h-10 bg-primary/20 rounded flex items-center justify-center text-primary mb-4"><i class="fa-solid fa-server"></i></div>
-                <h3 class="font-bold mb-4">Core Databases</h3>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">PostgreSQL 14+</span>
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">Oracle 19c</span>
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">MySQL / MariaDB</span>
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">Redis (Caching)</span>
-                </div>
-            </div>
-
-            <div class="bg-surface p-6 rounded-xl border border-white/5 hover:border-accent/50 transition-colors">
-                <div class="w-10 h-10 bg-accent/20 rounded flex items-center justify-center text-accent mb-4"><i class="fa-solid fa-cloud"></i></div>
-                <h3 class="font-bold mb-4">Cloud & Infrastructure</h3>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">AWS RDS / Aurora</span>
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">EC2 & S3</span>
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">Linux (RHEL/Ubuntu)</span>
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">Terraform</span>
-                </div>
-            </div>
-
-            <div class="bg-surface p-6 rounded-xl border border-white/5 hover:border-success/50 transition-colors">
-                <div class="w-10 h-10 bg-success/20 rounded flex items-center justify-center text-success mb-4"><i class="fa-solid fa-code"></i></div>
-                <h3 class="font-bold mb-4">Automation & Tools</h3>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">Python (Boto3)</span>
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">Bash Scripting</span>
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">Grafana / Prometheus</span>
-                    <span class="px-3 py-1 bg-darker text-xs rounded text-gray-300">Datadog</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-darker border-t border-white/5 py-12 text-center text-gray-500 text-sm">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
-            <div class="mb-6 flex gap-6 text-xl">
-                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="hover:text-white transition-colors"><i class="fa-solid fa-envelope"></i></a>
-            </div>
-            <p>&copy; 2026 J.Doe | Senior Database Administrator.</p>
-            <p class="mt-2 text-xs opacity-50">Designed for Professional Portfolio Showcase.</p>
-        </div>
+    <footer class="py-12 border-t border-gray-800 text-center bg-black">
+        <p class="text-gray-500 text-sm">
+            &copy; 2026 Kwang-Ho Kim. All Rights Reserved.<br>
+            Designed based on real career history.
+        </p>
     </footer>
 
     <script>
         AOS.init({
+            duration: 800,
             once: true,
-            offset: 100,
+            offset: 100
         });
-
-        // Add sliding animation for data packets in diagram
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes slideRight {
-                0% { left: 0; opacity: 0; }
-                10% { opacity: 1; }
-                90% { opacity: 1; }
-                100% { left: 100%; opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
